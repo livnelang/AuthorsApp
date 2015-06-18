@@ -10,13 +10,14 @@
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
 }
 
-.page-header  h1 {
+.page-header h1 {
     position:relative;  
     display:block;
     margin-top: 15px;
     text-align: center;
 	margin:0px auto;
-	color:#5E5E5E;
+	color:#0066CC;
+    padding: 15px;
 }
 
 #container {
@@ -41,4 +42,8 @@ main {
 .input-group input,button {
     float:left;
 
+}
+
+#auth_table  th {
+    color:#996633;
 }

@@ -1,23 +1,24 @@
-var todoApp = angular.module('todoApp',[]);
+var booksApp = angular.module('booksApp',[]);
 
 var model = {
 	user: 'Livne',
 	};
 
-	todoApp.run(function ($http) {
-	//console.log('Hey');
+	booksApp.run(function ($http) {
 	$http.get("https://authorsws.herokuapp.com/bestSellers").success(function (data) {
-		//alert('Hey');
-		//console.log('entered browser request: ' + data);
 		model.items = data;
 		}).error(function (data, status, headers, config) {
 	        alert("error" + data + status);
 	        return status;
 		});
 });
-todoApp.controller('BooksCtrl', function($scope,$http) {
-	$scope.todo = model;
+	booksApp.controller('BooksCtrl', function($scope,$http) {
+		$scope.todo = model;
 
+
+	/**
+	* searchById Function Once Triggered
+	*/
 	$scope.searchById = function(book_id) { 
 		$http.get("https://authorsws.herokuapp.com/bookById/" +book_id).success(function (data) {
 			console.log('book returnd: ' + data.name);
@@ -29,6 +30,21 @@ todoApp.controller('BooksCtrl', function($scope,$http) {
 	        return status;
 		});
 	};	
+
+	/**
+	* searchByYear Function Once Triggered
+	*/
+	$scope.searchByYear = function(book_year) { 
+		$http.get("https://authorsws.herokuapp.com/bookByYear/" +book_year).success(function (data) {
+			console.log('book returnd: ' + data);
+			$scope.todo.items = [];
+			$scope.todo.items = data;
+			//$scope.todo.items = data;
+		}).error(function (data, status, headers, config) {
+	        alert("error" + data + status);
+	        return status;
+		});
+	};
 
 	// "https://authorsws.herokuapp.com/bestSellers" + param
 
